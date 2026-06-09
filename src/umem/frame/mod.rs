@@ -78,6 +78,16 @@ impl FrameDesc {
         self.addr
     }
 
+    /// Sets the frame address (offset from the start of the UMEM).
+    ///
+    /// Added in this fork: exposes a public setter for `addr` so a frame
+    /// descriptor can be reset/reused without going through the higher-level
+    /// queue APIs. Upstream keeps `addr` private.
+    #[inline]
+    pub fn set_addr(&mut self, addr: usize) {
+        self.addr = addr;
+    }
+    
     /// Current headroom and packet data lengths for the frame pointed
     /// at by this descriptor.
     #[inline]
